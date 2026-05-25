@@ -29,5 +29,13 @@ const styles = StyleSheet.create({
   temperatureMin: { fontSize: 14, color: "#888" },
   condition: { fontWeight: "bold" },
   days: { flexGrow: 0, flexDirection: "row" },
-  day: { flex: 1, alignItems: "center", marginHorizontal: 16 },
+  day: {
+    flex: 1,
+    alignItems: "center",
+    padding: 16,
+    borderColor: "gray",
+    borderWidth: 0.5,
+    margin: 1,
+    borderRadius: 10,
+  },
 });

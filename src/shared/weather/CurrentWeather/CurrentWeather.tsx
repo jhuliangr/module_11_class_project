@@ -9,7 +9,7 @@ export const CurrentWeather: React.FC<{
   location: Location;
 }> = ({ location }) => {
   const data = useGetWeahter({ location });
-  
+
   return (
     <Card>
       <View style={styles.current}>

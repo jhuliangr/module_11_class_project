@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 import { type Location, type WeatherData } from "#shared/types";
 
+import { getApiLink } from "#shared/utils";
+import { toWeather } from "../weather/toWeather";
+
 type Props = {
   location: Location;
 };
@@ -11,7 +14,7 @@ export const useGetWeahter = ({ location }: Props): WeatherData | undefined => {
   useEffect(() => {
     void (async () => {
       const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,is_day,weather_code,wind_speed_10m,relative_humidity_2m,uv_index`,
+        `${getApiLink(location)}&current=temperature_2m,is_day,weather_code,wind_speed_10m,relative_humidity_2m,uv_index`,
       );
       const data = (await response.json()) as {
         current: {
@@ -24,7 +27,7 @@ export const useGetWeahter = ({ location }: Props): WeatherData | undefined => {
       };
 
       setData({
-        condition: data.current.weather_code,
+        condition: toWeather(data.current.weather_code),
         temperature: data.current.temperature_2m,
         wind: data.current.wind_speed_10m,
         humidity: data.current.relative_humidity_2m,
