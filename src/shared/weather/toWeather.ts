@@ -34,7 +34,7 @@ const codeMap = {
 export type WeatherCode = keyof typeof codeMap;
 export type Weather = (typeof codeMap)[WeatherCode];
 
-export function toWeather(input: number): Weather {
+export default function toWeather(input: number): Weather {
   if (input in codeMap) {
     return codeMap[input as WeatherCode];
   }

@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { type Location } from "#shared/types";
-
-import { getApiLink } from "#shared/utils";
-import { toWeather, type Weather } from "../weather/toWeather";
+import { getApiLink } from "./api";
+import toWeather from "./toWeather";
+import { type DailyWeather, type WeatherLocation } from "./types";
 
 type Props = {
-  location: Location;
-};
-
-type DailyWeather = {
-  day: string;
-  temperatureMax: number;
-  temperatureMin: number;
-  condition: Weather;
+  location?: WeatherLocation;
 };
 
 export const useGetDailyWeather = ({
@@ -23,6 +15,8 @@ export const useGetDailyWeather = ({
 
   useEffect(() => {
     void (async () => {
+      if (!location) return;
+
       const response = await fetch(
         `${getApiLink(location)}&daily=temperature_2m_max,temperature_2m_min,weather_code`,
       );

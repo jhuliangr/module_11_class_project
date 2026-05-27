@@ -1,1 +1,0 @@
-export { getApiLink } from "./api";

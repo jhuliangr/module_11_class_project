@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 
-import { type Location, type WeatherData } from "#shared/types";
-
-import { getApiLink } from "#shared/utils";
-import { toWeather } from "../weather/toWeather";
+import { getApiLink } from "./api";
+import toWeather from "./toWeather";
+import { type WeatherData, type WeatherLocation } from "./types";
 
 type Props = {
-  location: Location;
+  location?: WeatherLocation;
 };
 
 export const useGetWeahter = ({ location }: Props): WeatherData | undefined => {
   const [data, setData] = useState<WeatherData>();
+
   useEffect(() => {
     void (async () => {
+      if (!location) return;
+
       const response = await fetch(
         `${getApiLink(location)}&current=temperature_2m,is_day,weather_code,wind_speed_10m,relative_humidity_2m,uv_index`,
       );

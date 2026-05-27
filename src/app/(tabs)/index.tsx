@@ -1,28 +1,30 @@
-import { Link, Stack } from "expo-router";
-import { Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import { styles } from "#shared/styles";
-import { CurrentWeather, Forecast } from "#shared/weather";
+import Typography from "#design/elements/Typegraphy";
+import { CurrentWeather, Forecast, useDeviceLocation } from "#shared/weather";
 
 const App: React.FC = () => {
-  const location = {
-    name: "Barcelona",
-    latitude: 41.385063,
-    longitude: 2.173404,
-  };
+  const location = useDeviceLocation();
+
   return (
     <>
-      <Stack.Screen options={{ title: "Home" }} />
       <View style={styles.container}>
-        <Text>Weather App</Text>
-
         <CurrentWeather location={location} />
         <Forecast location={location} />
 
-        <Link href="/temp">Go to Temporary</Link>
+        <Typography href="/temp">Go to Temporary</Typography>
       </View>
     </>
   );
 };
 
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
