@@ -3,4 +3,4 @@ export * from "./CurrentWeather";
 export * from "./Forecast";
 export * from "./useGetWeahter";
 export * from "./useGetDailyWeather";
-export * from "./useLocation";
+export * from "./useCurrentLocation";

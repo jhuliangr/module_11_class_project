@@ -1,8 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 import Card from "#design/elements/Card";
 import Typography from "#design/elements/Typegraphy";
 import { spacing } from "#design/foundations";
+import { hapticImpact } from "#shared/haptics";
 
 import { type WeatherLocation } from "./types";
 import { useGetWeahter } from "./useGetWeahter";
@@ -14,11 +15,13 @@ export const CurrentWeather: React.FC<{
 
   return (
     <Card>
-      <View style={styles.current}>
-        <Typography variant="title">{data?.temperature ?? "--"} C</Typography>
-        <Typography variant="muted">{location?.name ?? "--"}</Typography>
-        <Typography variant="label">{data?.condition ?? "--"}</Typography>
-      </View>
+      <Pressable onPress={() => hapticImpact()}>
+        <View style={styles.current}>
+          <Typography variant="title">{data?.temperature ?? "--"} C</Typography>
+          <Typography variant="muted">{location?.name ?? "--"}</Typography>
+          <Typography variant="label">{data?.condition ?? "--"}</Typography>
+        </View>
+      </Pressable>
 
       <View style={styles.stats}>
         <View style={styles.stat}>
