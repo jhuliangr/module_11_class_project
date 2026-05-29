@@ -1,13 +1,16 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 
+import { useSettings } from "#shared/settings";
+
 const Layout: React.FC = () => {
+  const settings = useSettings();
   return (
     <Tabs screenOptions={{ headerShown: false }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: settings.home.name,
           tabBarIcon: ({ color, size }) => (
             <FontAwesome size={size} name="skyatlas" color={color} />
           ),
