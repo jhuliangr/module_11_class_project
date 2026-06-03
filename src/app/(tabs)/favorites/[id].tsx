@@ -1,7 +1,7 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
-import { useFavorites } from "#shared/favorites";
+import { useFavorites } from "#features/favorites";
 import { CurrentWeather, Forecast } from "#shared/weather";
 
 const App: React.FC = () => {

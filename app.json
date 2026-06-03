@@ -2,6 +2,7 @@
   "expo": {
     "name": "SkyCast",
     "slug": "SkyCast",
+    "owner": "jhuliangr",
     "version": "1.0.0",
     "scheme": "com.jh_skycast",
     "experiments": {
@@ -20,12 +21,17 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.skycast.assignment",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -39,6 +45,12 @@
         }
       ],
       "expo-sensors"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b5543363-2bbe-46cc-9999-aed4755c07aa"
+      }
+    }
   }
 }

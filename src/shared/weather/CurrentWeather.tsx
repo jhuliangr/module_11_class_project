@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, View } from "react-native";
 import Card from "#design/elements/Card";
 import Typography from "#design/elements/Typegraphy";
 import { spacing } from "#design/foundations";
-import { hapticImpact } from "#shared/haptics";
+import { hapticImpact } from "#shared/device/haptics";
 
 import { type WeatherLocation } from "./types";
 import { useGetWeahter } from "./useGetWeahter";

@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 import Typography from "#design/elements/Typegraphy";
-import { useFavorites } from "#shared/favorites";
+import { useFavorites } from "#features/favorites";
 
 const App: React.FC = () => {
   const [favorites] = useFavorites();

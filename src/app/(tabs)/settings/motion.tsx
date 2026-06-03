@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 import Typography from "#design/elements/Typegraphy";
-import { subscribeDeviceMotion } from "#shared/sensors";
+import { subscribeDeviceMotion } from "#shared/device/sensors";
 
 const App: React.FC = () => {
   useEffect(
     () =>
       subscribeDeviceMotion((motion) => {
-        console.log({
+        console.warn({
           x: motion.accelerationIncludingGravity.x.toFixed(8),
           y: motion.accelerationIncludingGravity.y.toFixed(8),
           z: motion.accelerationIncludingGravity.z.toFixed(8),
