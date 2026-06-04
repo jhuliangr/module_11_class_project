@@ -29,6 +29,10 @@ const codeMap = {
   77: "Light Snow",
   85: "Light Snow",
   86: "Heavy Snow",
+
+  95: "Thunderstorm",
+  96: "Thunderstorm",
+  99: "Thunderstorm",
 } as const;
 
 export type WeatherCode = keyof typeof codeMap;

@@ -1,10 +1,29 @@
-import * as Notifications from "expo-notifications";
+import type * as ExpoNotifications from "expo-notifications";
 import { Platform } from "react-native";
+
+type NotificationsModule = typeof ExpoNotifications;
+
+// expo-notifications requires a development build and is not available in Expo Go.
+// We load it conditionally so the app degrades gracefully in environments where
+// the native module is not present.
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+let Notifications: NotificationsModule | null = null;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  Notifications = require("expo-notifications") as NotificationsModule;
+} catch {
+  // not available in this environment
+}
 
 let configured: boolean | null = null;
 
 export async function configureNotifications(): Promise<boolean> {
   if (configured !== null) return configured;
+
+  if (!Notifications) {
+    configured = false;
+    return false;
+  }
 
   const { status } = await Notifications.requestPermissionsAsync();
   if (status !== Notifications.PermissionStatus.GRANTED) {
@@ -36,6 +55,8 @@ export async function createNotification({
   short?: string;
   body: string;
 }): Promise<void> {
+  if (!Notifications) return;
+
   await configureNotifications();
 
   await Notifications.scheduleNotificationAsync({

@@ -9,7 +9,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "babel.config.cjs"
+    "expo-env.d.ts"
   ]
 }
