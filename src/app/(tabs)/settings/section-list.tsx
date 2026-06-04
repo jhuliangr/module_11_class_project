@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { SectionList, StyleSheet, View } from "react-native";
 
 import Typography from "#design/elements/Typegraphy";
+import { useTheme } from "#shared/settings";
 
 type Section = {
   id: string;
@@ -17,7 +18,7 @@ type Item = {
 const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [sections, setSections] = useState<Section[]>([]);
-
+  const colors = useTheme();
 
   const refresh = useCallback(async () => {
     setLoading(true);
@@ -51,7 +52,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <SectionList
           stickySectionHeadersEnabled
           style={{ width: "100%" }}
@@ -71,7 +72,7 @@ const App: React.FC = () => {
               style={{
                 paddingVertical: 16,
                 paddingHorizontal: 16,
-                backgroundColor: "white",
+                backgroundColor: colors.surface,
               }}
             >
               <Typography variant="title">{section.label}</Typography>
@@ -88,7 +89,6 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

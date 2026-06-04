@@ -6,7 +6,7 @@ import ToggleField from "#design/elements/fields/Toggle";
 import FormGroup from "#design/elements/FormGroup";
 import Typography from "#design/elements/Typegraphy";
 import { createNotification } from "#shared/device/notifications";
-import { useSettings, useSettingsSetter } from "#shared/settings";
+import { useSettings, useSettingsSetter, useTheme } from "#shared/settings";
 
 const App: React.FC = () => {
   const settings = useSettings();
@@ -15,10 +15,11 @@ const App: React.FC = () => {
     body: "Exercitation nulla pariatur minim proident ullamco et pariatur.",
   });
   const setSettings = useSettingsSetter();
+  const colors = useTheme();
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <Typography variant="title">Notifications</Typography>
 
         <FormGroup label="Enable Notifications">
@@ -91,7 +92,6 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },

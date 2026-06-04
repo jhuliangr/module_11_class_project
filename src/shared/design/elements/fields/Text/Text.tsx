@@ -1,5 +1,7 @@
 import { type TextInputProps, StyleSheet, TextInput } from "react-native";
 
+import { useTheme } from "#shared/settings";
+
 export type TextFieldProps = {
   onChange: (value: string) => void;
   value: string;
@@ -11,11 +13,14 @@ const TextField: React.FC<TextFieldProps> = ({
   style,
   ...props
 }) => {
+  const colors = useTheme();
+
+  const bodyColor = { color: colors.body, borderColor: colors.muted };
   return (
     <TextInput
       onChangeText={onChange}
       value={value}
-      style={[styles.input, style]}
+      style={[styles.input, style, bodyColor]}
       {...props}
     />
   );
@@ -29,5 +34,6 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
     lineHeight: 16,
+    borderRadius: 10
   },
 });

@@ -1,8 +1,20 @@
 import { Drawer } from "expo-router/drawer";
 
+import { useTheme } from "#shared/settings";
+
 const Layout: React.FC = () => {
+  const colors = useTheme();
+
   return (
-    <Drawer>
+    <Drawer
+      screenOptions={{
+        headerStyle: { backgroundColor: colors.background },
+        headerTintColor: colors.body,
+        drawerStyle: { backgroundColor: colors.background },
+        drawerActiveTintColor: colors.brand,
+        drawerInactiveTintColor: colors.muted,
+      }}
+    >
       <Drawer.Screen name="index" options={{ title: "Settings" }} />
       <Drawer.Screen
         name="notifications"

@@ -1,14 +1,16 @@
 import { StyleSheet, View } from "react-native";
 
 import Typography from "#design/elements/Typegraphy";
+import { useTheme } from "#shared/settings";
 import { CurrentWeather, Forecast, useCurrentLocation } from "#shared/weather";
 
 const App: React.FC = () => {
   const location = useCurrentLocation();
+  const colors = useTheme();
 
   return (
     <>
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
         <CurrentWeather location={location} />
         <Forecast location={location} />
 
@@ -23,7 +25,6 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
   },

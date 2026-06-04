@@ -1,6 +1,7 @@
 import { type StyleProp, type ViewStyle, StyleSheet, View } from "react-native";
 
-import { colors, shadows, shapes, spacing } from "#design/foundations";
+import { shapes, spacing } from "#design/foundations";
+import { useTheme } from "#shared/settings";
 
 export type CardProps = {
   style?: StyleProp<ViewStyle>;
@@ -8,8 +9,20 @@ export type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ style, children, ...props }) => {
+  const colors = useTheme();
+
   return (
-    <View {...props} style={[styles.container, style]}>
+    <View
+      {...props}
+      style={[
+        styles.container,
+        {
+          backgroundColor: colors.surface,
+          boxShadow: `0px 2px 4px ${colors.shadow}`,
+        },
+        style,
+      ]}
+    >
       {children}
     </View>
   );
@@ -21,12 +34,8 @@ const styles = StyleSheet.create({
   container: {
     padding: spacing.inside,
     margin: spacing.between,
-
     alignItems: "center",
     justifyContent: "center",
-
     borderRadius: shapes.borderRadius,
-    backgroundColor: colors.background,
-    ...shadows.main,
   },
 });

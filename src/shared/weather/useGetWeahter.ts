@@ -18,6 +18,9 @@ export const useGetWeahter = ({ location }: Props): WeatherData | undefined => {
       const response = await fetch(
         `${getApiLink(location)}&current=temperature_2m,is_day,weather_code,wind_speed_10m,relative_humidity_2m,uv_index`,
       );
+
+      if (!response.ok) return;
+
       const data = (await response.json()) as {
         current: {
           weather_code: number;
@@ -27,7 +30,6 @@ export const useGetWeahter = ({ location }: Props): WeatherData | undefined => {
           uv_index: number;
         };
       };
-
       setData({
         condition: toWeather(data.current.weather_code),
         temperature: data.current.temperature_2m,

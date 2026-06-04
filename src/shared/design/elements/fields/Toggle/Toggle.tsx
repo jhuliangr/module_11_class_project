@@ -1,4 +1,6 @@
-import { type SwitchProps, StyleSheet, Switch } from "react-native";
+import { type SwitchProps, Switch } from "react-native";
+
+import { useTheme } from "#shared/settings";
 
 export type ToggleFieldProps = {
   onChange: (value: boolean) => void;
@@ -11,18 +13,18 @@ const ToggleField: React.FC<ToggleFieldProps> = ({
   style,
   ...props
 }) => {
+  const colors = useTheme();
+
   return (
     <Switch
       onValueChange={onChange}
       value={value}
-      style={[styles.input, style]}
+      thumbColor={colors.body}
+      trackColor={{ false: colors.muted, true: colors.brand }}
+      style={[style]}
       {...props}
     />
   );
 };
 
 export default ToggleField;
-
-const styles = StyleSheet.create({
-  input: {},
-});

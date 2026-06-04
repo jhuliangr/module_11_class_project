@@ -1,12 +1,21 @@
 import { Tabs } from "expo-router";
 
 import Icon from "#design/elements/Icon";
-import { useSettings } from "#shared/settings";
+import { useSettings, useTheme } from "#shared/settings";
 
 const Layout: React.FC = () => {
   const settings = useSettings();
+  const colors = useTheme();
+
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { backgroundColor: colors.background },
+        tabBarActiveTintColor: colors.brand,
+        tabBarInactiveTintColor: colors.muted,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{

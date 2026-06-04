@@ -1,6 +1,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
+import { type ColorPalette, dark as darkColors, light as lightColors } from "../design/foundations/colors";
+
+export type { ColorPalette };
+
 export type Settings = {
   home: {
     name: string;
@@ -9,6 +13,7 @@ export type Settings = {
     enabled: boolean;
     favorites: boolean;
   };
+  theme: "light" | "dark";
 };
 
 const defaultSettings: Settings = {
@@ -19,6 +24,7 @@ const defaultSettings: Settings = {
     enabled: false,
     favorites: true,
   },
+  theme: "light",
 };
 
 const STORAGE_KEY = "settings";
@@ -71,4 +77,9 @@ export function useSettingsSetter(): (settings: Settings) => void {
   if (!context) throw new Error("Missing SettingsProvider.");
 
   return context.set;
+}
+
+export function useTheme(): ColorPalette {
+  const { theme } = useSettings();
+  return theme === "dark" ? darkColors : lightColors;
 }
