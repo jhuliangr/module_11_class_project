@@ -1,12 +1,15 @@
 import { render, userEvent } from "@testing-library/react-native";
 
 import FormGroup from "#design/elements/FormGroup";
+import { SettingsProvider } from "#shared/settings";
 
 import Text from "./Text";
 
 describe("Design > Elements > Fields > Text", () => {
   it("works", () => {
-    render(<Text onChange={() => undefined} value="" />);
+    render(<Text onChange={() => undefined} value="" />, {
+      wrapper: SettingsProvider,
+    });
   });
 
   it("handles keyboard", async () => {
@@ -14,6 +17,7 @@ describe("Design > Elements > Fields > Text", () => {
 
     const { getByDisplayValue } = render(
       <Text onChange={callback} value="Value" />,
+      { wrapper: SettingsProvider },
     );
 
     const value = getByDisplayValue("Value");
@@ -34,6 +38,7 @@ describe("Design > Elements > Fields > Text", () => {
       <FormGroup label="Text Field">
         <Text onChange={callback} value="Value" />
       </FormGroup>,
+      { wrapper: SettingsProvider },
     );
 
     getByText("Text Field");

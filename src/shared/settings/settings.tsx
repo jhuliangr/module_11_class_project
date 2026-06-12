@@ -1,7 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-import { type ColorPalette, dark as darkColors, light as lightColors } from "../design/foundations/colors";
+import {
+  type ColorPalette,
+  dark as darkColors,
+  light as lightColors,
+} from "../design/foundations/colors";
 
 export type { ColorPalette };
 

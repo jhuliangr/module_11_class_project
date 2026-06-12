@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
     lineHeight: 16,
-    borderRadius: 10
+    borderRadius: 10,
   },
 });

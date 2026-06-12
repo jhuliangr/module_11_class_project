@@ -6,7 +6,7 @@ type NotificationsModule = typeof ExpoNotifications;
 // expo-notifications requires a development build and is not available in Expo Go.
 // We load it conditionally so the app degrades gracefully in environments where
 // the native module is not present.
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+
 let Notifications: NotificationsModule | null = null;
 try {
   // eslint-disable-next-line @typescript-eslint/no-require-imports

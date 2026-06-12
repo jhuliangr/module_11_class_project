@@ -7,6 +7,7 @@ SkyCast is a mobile weather app that allows you instantly check current weather 
 SkyCast is a React Native application built with Expo and written entirely in TypeScript. Navigation is handled by Expo Router, which provides file-based routing: the directory tree under `src/app/` maps directly to the screen files, keeping routing concerns completely separate from business logic and UI components. Weather data is fetched from the Open-Meteo free API. User preferences and favourite cities are stored locally on the device via AsyncStorage. The codebase is organized around a feature/shared split. Reusable cross-cutting modules live under `src/shared/` and are exposed through explicit package-level aliases, while feature-specific logic lives under `src/features/`. Every shared module follows the modlet pattern: each component or hook has its own folder with a public `index.ts`.
 
 **Tech stack:**
+
 - React Native 0.81 / React 19
 - Expo ~54 + Expo Router ~6 (file-based routing)
 - TypeScript ~5.9
